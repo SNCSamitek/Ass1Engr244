@@ -3,30 +3,61 @@
 #include <sstream>
 
 Information::Information() {
-	this->firstName = "";
-	this->lastName = "";
+	this->firstName[0] = '\0';
+	this->lastName[0] = '\0';
 	this->dateOfBirth = Date();
 }
 
 Information::Information(Information const &obj) {
-	this->firstName = obj.firstName;
-	this->lastName = obj.lastName;
+	setFirstName(obj.firstName);
+	setLastName(obj.lastName);
 	this->dateOfBirth= obj.dateOfBirth;
 }
 
 Information::Information(char* firstName, char* lastName, Date dateOfBirth) {
-	this->firstName = firstName;
-	this->lastName = lastName;
+	setFirstName(firstName);
+	setLastName(lastName);
 	this->dateOfBirth = dateOfBirth;
 }
 
 Information::~Information() {
-	delete firstName;
-	delete lastName;
+	
 }
 
 std::string Information::toString() {
 	std::ostringstream value;
     value << "Guest: " << firstName << " " << lastName << ", born on " << dateOfBirth.toString() << "\n";
 	return value.str();
+}
+
+void Information::setFirstName(const char* firstName) {
+    if (!firstName) {        
+        this->firstName[0] = '\0';
+        return;
+    }
+
+    size_t len = strlen(firstName);
+
+    size_t i;
+    for (i = 0; i < len && i < sizeof(this->firstName) - 1; i++) {
+        this->firstName[i] = firstName[i];
+    }
+
+    this->firstName[i] = '\0';
+}
+
+void Information::setLastName(const char* lastName) {
+	if (!lastName) {        
+        this->lastName[0] = '\0';
+        return;
+    }
+
+    size_t len = strlen(lastName);
+
+    size_t i;
+    for (i = 0; i < len && i < sizeof(this->lastName) - 1; i++) {
+        this->lastName[i] = lastName[i];
+    }
+	
+    this->lastName[i] = '\0';
 }

@@ -7,8 +7,8 @@
 class Information {
 
 private:
-	char* firstName;
-	char* lastName;
+	char firstName[25];
+	char lastName[25];
 	Date dateOfBirth;
 
 public:
@@ -18,4 +18,6 @@ public:
 	~Information();
 
 	std::string toString();
+	void setFirstName(const char* firstName);
+	void setLastName(const char* lastName);
 };

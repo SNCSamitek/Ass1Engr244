@@ -1,7 +1,6 @@
 #pragma once
 #include "date.h"
 #include "information.h"
-#include "guests.h"
 #include <string>
 
 class Guests {

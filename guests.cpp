@@ -11,13 +11,11 @@ Guests::Guests() {
 Guests::Guests(Guests const &obj) {
 	this->checkIn = obj.checkIn;
 	this->checkOut = obj.checkOut;
-	this->no_of_people = no_of_people;
-	if (obj.people != nullptr) {
-		for (int i = 0; i < obj.no_of_people; i++) {
-			this->people[i] = obj.people[i];
-		}
+	this->no_of_people = obj.no_of_people;
+	for (int i = 0; i < obj.no_of_people; i++) {
+		this->people[i] = obj.people[i];
 	}
-	this->room_id = room_id;
+	this->room_id = obj.room_id;
 }
 
 Guests::Guests(Date checkIn, Date checkOut, Information* people, short no_of_people, short room_id) {

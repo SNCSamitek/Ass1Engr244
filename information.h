@@ -7,10 +7,15 @@
 class Information {
 
 private:
-	char firstName[2] = {};
-	char lastName[2] = {};
+	char* firstName;
+	char* lastName;
 	Date dateOfBirth;
 
 public:
+	Information();
+	Information(Information &obj);
+	Information(char* firstName, char* lastName, Date dateOfBirth);
+	~Information();
 
+	std::string toString();
 };

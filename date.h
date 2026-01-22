@@ -12,7 +12,7 @@ private:
 public:
 	Date();
 	Date(int y, int m, int d);
-	Date(Date &d);
+	Date(Date const &d);
 
 	int getYear() const {return year;};
 	int getMonth() const {return month;};

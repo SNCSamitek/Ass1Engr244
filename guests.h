@@ -15,6 +15,7 @@ private:
 
 public: 
 	Guests();
+	Guests(Guests const &obj);
 	Guests(Date checkIn, Date checkOut, Information* people, short no_of_people, short room_id);
 	~Guests();
 	std::string toString();

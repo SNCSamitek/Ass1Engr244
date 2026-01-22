@@ -8,7 +8,7 @@ Information::Information() {
 	this->dateOfBirth = Date();
 }
 
-Information::Information(Information &obj) {
+Information::Information(Information const &obj) {
 	this->firstName = obj.firstName;
 	this->lastName = obj.lastName;
 	this->dateOfBirth= obj.dateOfBirth;

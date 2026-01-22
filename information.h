@@ -13,7 +13,7 @@ private:
 
 public:
 	Information();
-	Information(Information &obj);
+	Information(Information const &obj);
 	Information(char* firstName, char* lastName, Date dateOfBirth);
 	~Information();
 

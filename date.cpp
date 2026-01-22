@@ -12,7 +12,7 @@ Date::Date(int y, int m, int d) {
 	day = (d >= 1 && d <= 31) ? d : 1;
 }
 
-Date::Date(Date &d) {
+Date::Date(Date const &d) {
 	this->day = d.day;
 	this->month = d.month;
 	this->year = d.year;

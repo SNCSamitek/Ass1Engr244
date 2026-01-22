@@ -18,5 +18,5 @@ public:
 
 	void displayDetails(int id);
 	void cancelReservation(int id);
-	int processReservation(const Guests_Res_Request);
+	int processReservation(const Guests_Res_Request &request);
 };

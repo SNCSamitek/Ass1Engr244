@@ -33,7 +33,7 @@ Guests::Guests(Date checkIn, Date checkOut, Information* people, short no_of_peo
 }
 
 Guests::~Guests() {
-	delete people;
+	
 }
 
 std::string Guests::toString() {

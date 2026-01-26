@@ -8,7 +8,9 @@ Reservation_Manager::Reservation_Manager(){
 }
 
 Reservation_Manager::~Reservation_Manager(){
-    delete arr;
+    for(auto ptr : arr){
+        delete ptr;
+    }
 }
 
 void Reservation_Manager::displayDetails(int id){ 
@@ -27,9 +29,36 @@ void Reservation_Manager::displayDetails(int id){
     std::cout << "Reserved for: " << lengthOfStay << std:: endl; 
 }
 
-int Reservation_Manager::processReservation(const Guests_Res_Request &req){
-    int* stayPtr;
-    stayPtr = new 
+int Reservation_Manager::processReservation(Guests_Res_Request* req){
+    int dur = req->get_no_of_nights();
+    int* stayPtr = new int[dur] {};
+    bool canBook;
+
+    for(int i = 0; i < no_of_rooms; i++){
+        for(int j = 0; j < max_no_of_nights - dur; j++){
+            canBook = true;
+
+            for(int k = 0; k < dur; k++){
+                if(reservation_table[i][j+k] != 0){
+                    canBook= false;
+                    break;
+                }
+            }
+
+            if(canBook){
+                for(int k = 0; k < dur; k++){
+                    stayPtr[k] = req->get_reservation_id();
+                    reservation_table[i][j+k] += stayPtr[k];
+                }
+                delete[] stayPtr;
+                arr.push_back(req);
+                return req->get_reservation_id();
+            }
+        }
+    }
+
+    delete[] stayPtr;
+    return -1;
 }
 
 void Reservation_Manager::cancelReservation(int id){

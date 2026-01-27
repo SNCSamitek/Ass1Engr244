@@ -50,5 +50,7 @@ void Guests::printGuests(){
 	checkIn.printDate();
 	checkOut.printDate();
 
-	
+	for(auto person : people){
+		person.printInformation();
+	}
 }

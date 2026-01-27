@@ -18,5 +18,9 @@ public:
 	inline int getMonth() const {return month;};
 	inline int getDay() const {return day;};
 
+	void setDay(int d);
+	void setMonth(int m);
+	void setYear(int y);
+
 	std::string toString();
 };

@@ -23,3 +23,15 @@ std::string Date::toString() {
 	value << year << ", " << month << ", " << day;
 	return value.str();
 }
+
+void Date::setDay(int d) {
+	day = (d >= 1 && d <= 31) ? d : 1;
+}
+
+void Date::setMonth(int m) {
+	month = (m >= 1 && m <= 12) ? m : 1;
+}
+
+void Date::setYear(int y) {
+	year = (y > 0) ? y : 0;
+}

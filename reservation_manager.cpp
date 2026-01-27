@@ -12,7 +12,7 @@ Reservation_Manager::Reservation_Manager(){
 }
 
 Reservation_Manager::~Reservation_Manager(){
-    for(auto ptr : arr){
+    for(Guests_Res_Request* ptr : arr){
         delete ptr;
     }
 }
@@ -35,7 +35,7 @@ void Reservation_Manager::displayDetails(int id){
 
 int Reservation_Manager::processReservation(Guests_Res_Request* req){
     size_t dur = req->get_no_of_nights();
-    int* stayPtr = new int[dur] {};
+    int* stayPtr = new int[dur];
     bool canBook;
 
     for(int i = 0; i < no_of_rooms; i++){

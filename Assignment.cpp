@@ -22,7 +22,7 @@ void displayMenu(Reservation_Manager &rm){
 	char choice;
 	bool exit = false;
 	while (!exit) {
-		cout << "Select your choice: " << endl;
+		cout << "\nSelect your choice: " << endl;
 		cout << "\t1) Add a reservation." << endl;
 		cout << "\t2) Cancel a reservation." << endl;
 		cout << "\t3) Display information of a reservation." << endl;
@@ -47,7 +47,7 @@ void displayMenu(Reservation_Manager &rm){
 
 		switch (choice) {
 			case '1':
-			cout << "How many nights are they staying: ";
+			cout << "\nHow many nights are they staying: ";
 			cin >> no_of_nights;
 			cout << "How many people: ";
 			cin >> no_of_people;
@@ -83,14 +83,17 @@ void displayMenu(Reservation_Manager &rm){
 			checkOut.setYear(2026);
 			people = new Guests(checkIn, checkOut, edgars_people, no_of_people, room_id);
 			new_req = new Guests_Res_Request(no_of_nights, people);
-			rm.processReservation(new_req);
-			delete people;
-			delete new_req;
+			id = rm.processReservation(new_req);
+			cout << "Reservation created at id: " << id << endl;
 			break;
 			case '2':
+			cout << "ID of reservation: ";
+			cin >> id;
 			rm.cancelReservation(id);
 			break;
 			case '3':
+			cout << "ID of reservation: ";
+			cin >> id;
 			rm.displayDetails(id);
 			break;
 			case '4':

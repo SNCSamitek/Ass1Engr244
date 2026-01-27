@@ -30,7 +30,7 @@ void Reservation_Manager::displayDetails(int id){
         }
     } 
     std::cout << "Room number: " << room << std::endl; 
-    std::cout << "Reserved for: " << lengthOfStay << std:: endl; 
+    std::cout << "Reserved for: " << lengthOfStay << "night(s)" << std:: endl; 
 }
 
 int Reservation_Manager::processReservation(Guests_Res_Request* req){

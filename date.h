@@ -14,9 +14,9 @@ public:
 	Date(int y, int m, int d);
 	Date(Date const &d);
 
-	int getYear() const {return year;};
-	int getMonth() const {return month;};
-	int getDay() const {return day;};
+	inline int getYear() const {return year;};
+	inline int getMonth() const {return month;};
+	inline int getDay() const {return day;};
 
 	std::string toString();
 };

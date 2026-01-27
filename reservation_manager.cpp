@@ -4,7 +4,11 @@
 #include <array>
 
 Reservation_Manager::Reservation_Manager(){
-	int reservation_table [max_no_of_nights][no_of_rooms] = {};
+    for(int i = 0; i < no_of_rooms; i++){
+        for(int j = 0; j < max_no_of_nights; j++){
+            reservation_table [j][i] = 0;
+        }
+    }
 }
 
 Reservation_Manager::~Reservation_Manager(){
@@ -30,7 +34,7 @@ void Reservation_Manager::displayDetails(int id){
 }
 
 int Reservation_Manager::processReservation(Guests_Res_Request* req){
-    int dur = req->get_no_of_nights();
+    size_t dur = req->get_no_of_nights();
     int* stayPtr = new int[dur] {};
     bool canBook;
 
@@ -56,17 +60,25 @@ int Reservation_Manager::processReservation(Guests_Res_Request* req){
             }
         }
     }
-
+    
+    delete req;
     delete[] stayPtr;
     return -1;
 }
 
 void Reservation_Manager::cancelReservation(int id){
+    for(int i = 0; i < arr.size(); i++){
+        if(arr[i]->get_reservation_id() == id){
+            delete arr[i];
+            arr.erase(arr.begin() + i);
+        }
+    }
+
     for(size_t i = 0; i < no_of_rooms; i++){ 
         for(size_t j = 0; j < max_no_of_nights; j++){ 
             if(id == reservation_table[j][i]){
                 reservation_table[j][i] = 0;
             } 
         }
-    } 
+    }
 }

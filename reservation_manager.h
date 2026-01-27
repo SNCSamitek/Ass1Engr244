@@ -20,4 +20,5 @@ public:
 	void displayDetails(int id);
 	void cancelReservation(int id);
 	int processReservation(Guests_Res_Request* request);
+	void printResMan();
 };

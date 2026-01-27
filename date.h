@@ -22,5 +22,6 @@ public:
 	void setMonth(int m);
 	void setYear(int y);
 
+	void printDate();
 	std::string toString();
 };

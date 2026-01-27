@@ -82,3 +82,21 @@ void Reservation_Manager::cancelReservation(int id){
         }
     }
 }
+
+void Reservation_Manager::printResMan(){
+    std::cout << max_no_of_nights << std::endl;
+    std::cout << no_of_rooms << std::endl;
+
+    for(auto request : arr){
+        std::cout << "-------------------" << std::endl;
+        request->printGuestsRequests();
+    }
+
+    std::cout << "Reservation table" << std::endl;
+    for(int i = 0; i < max_no_of_nights; i++){
+        for(int j = 0; j < no_of_rooms; j++){
+            std::cout << reservation_table[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+}

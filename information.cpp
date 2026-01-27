@@ -62,3 +62,13 @@ void Information::setLastName(const char* lastName) {
 	
     this->lastName[i] = '\0';
 }
+
+void Information::printInformation(){
+    for(auto letter : firstName){
+        std::cout << letter << std::endl;
+    }
+    for(auto letter : lastName){
+        std::cout << letter << std::endl;
+    }
+    dateOfBirth.printDate();
+}

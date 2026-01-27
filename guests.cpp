@@ -43,3 +43,10 @@ std::string Guests::toString() {
 	value << "\n";
 	return value.str();
 }
+
+void Guests::printGuests(){
+	std::cout << room_id << std::endl;
+	std::cout << no_of_people << std::endl;
+	checkIn.printDate();
+	checkOut.printDate();
+}

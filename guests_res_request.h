@@ -1,6 +1,7 @@
 #pragma once
 #include "guests.h"
 #include <string>
+#include <iostream>
 
 class Guests_Res_Request {
 
@@ -20,4 +21,6 @@ public:
 	inline int get_reservation_id() const{
 		return reservation_id;
 	}
+
+	void printGuestsRequests();
 };

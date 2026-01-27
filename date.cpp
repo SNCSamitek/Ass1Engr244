@@ -1,4 +1,5 @@
 #include "date.h"
+#include <iostream>
 
 Date::Date() {
 	year = 0;
@@ -34,4 +35,11 @@ void Date::setMonth(int m) {
 
 void Date::setYear(int y) {
 	year = (y > 0) ? y : 0;
+}
+
+void Date::printDate(){
+	std::cout << "year" << std::endl;
+	std::cout << "month" << std::endl;
+	std::cout << "day" << std::endl;
+
 }

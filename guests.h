@@ -2,6 +2,7 @@
 #include "date.h"
 #include "information.h"
 #include <string>
+#include <iostream>
 
 class Guests {
 
@@ -18,4 +19,5 @@ public:
 	Guests(Date checkIn, Date checkOut, Information* people, short no_of_people, short room_id);
 	~Guests();
 	std::string toString();
+	void printGuests();
 };

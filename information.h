@@ -20,4 +20,5 @@ public:
 	std::string toString();
 	void setFirstName(const char* firstName);
 	void setLastName(const char* lastName);
+	void printInformation();
 };

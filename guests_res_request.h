@@ -22,5 +22,6 @@ public:
 		return reservation_id;
 	}
 
-	void printGuestsRequests();
+	void displayPeople() const;
+	void printGuestsRequests() const;
 };

@@ -49,4 +49,6 @@ void Guests::printGuests(){
 	std::cout << no_of_people << std::endl;
 	checkIn.printDate();
 	checkOut.printDate();
+
+	
 }

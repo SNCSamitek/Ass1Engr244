@@ -14,10 +14,13 @@ Guests_Res_Request::~Guests_Res_Request() {
 	delete people;
 }
 
-void Guests_Res_Request::printGuestsRequests(){
+void Guests_Res_Request::printGuestsRequests() const{
 		std::cout << this->no_of_nights << std::endl;
 		std::cout << this->id << std::endl;
 		std::cout << this->reservation_id << std::endl;
 		people->printGuests();
+}
 
-	}
+void Guests_Res_Request::displayPeople() const{
+	people->printGuests();
+}

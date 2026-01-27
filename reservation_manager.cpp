@@ -19,18 +19,20 @@ Reservation_Manager::~Reservation_Manager(){
 
 void Reservation_Manager::displayDetails(int id){ 
     std::cout << "The details of reservation " << id << " are the following:" << std::endl;
-    short lengthOfStay = 0;
     short room = 0; 
+
     for(size_t i = 0; i < no_of_rooms; i++){ 
         for(size_t j = 0; j < max_no_of_nights; j++){ 
             if(id == reservation_table[j][i]){
                 room = i + 1;
-                lengthOfStay++; 
             } 
         }
     } 
+
     std::cout << "Room number: " << room << std::endl; 
-    std::cout << "Reserved for: " << lengthOfStay << "night(s)" << std:: endl; 
+    std::cout << "Reserved for: " << arr[id]->get_no_of_nights() << " night(s)" << std:: endl;
+    arr[id]->displayPeople();
+    
 }
 
 int Reservation_Manager::processReservation(Guests_Res_Request* req){

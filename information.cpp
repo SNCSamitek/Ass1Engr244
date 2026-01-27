@@ -1,6 +1,7 @@
 #include "information.h"
 #include <iostream>
 #include <sstream>
+#include <cstring>
 
 Information::Information() {
 	this->firstName[0] = '\0';
@@ -36,7 +37,7 @@ void Information::setFirstName(const char* firstName) {
         return;
     }
 
-    size_t len = strlen(firstName);
+    size_t len = std::strlen(firstName);
 
     size_t i;
     for (i = 0; i < len && i < sizeof(this->firstName) - 1; i++) {
@@ -52,7 +53,7 @@ void Information::setLastName(const char* lastName) {
         return;
     }
 
-    size_t len = strlen(lastName);
+    size_t len = std::strlen(lastName);
 
     size_t i;
     for (i = 0; i < len && i < sizeof(this->lastName) - 1; i++) {

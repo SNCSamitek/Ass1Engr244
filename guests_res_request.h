@@ -13,6 +13,11 @@ private:
 public: 
 	Guests_Res_Request(int no_of_nights, Guests* people);
 	~Guests_Res_Request();
-	inline int get_no_of_nights() const;
-	inline int get_reservation_id() const;
+	
+	inline int get_no_of_nights() const{
+		return no_of_nights;
+	}
+	inline int get_reservation_id() const{
+		return reservation_id;
+	}
 };

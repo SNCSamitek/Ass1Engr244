@@ -45,11 +45,19 @@ std::string Guests::toString() {
 }
 
 void Guests::printGuests(){
+	std::cout << "Room ID: " << std::endl;
 	std::cout << room_id << std::endl;
+	std::cout << "Number of people: " << std::endl;
 	std::cout << no_of_people << std::endl;
+
+	std::cout << "Check In Date: " << std::endl;
 	checkIn.printDate();
+
+	std::cout << "Check Out Date: " << std::endl;
 	checkOut.printDate();
 
+	std::cout << "Room ID: " << std::endl;
+	std::cout << room_id << std::endl;
 	for(auto person : people){
 		person.printInformation();
 	}

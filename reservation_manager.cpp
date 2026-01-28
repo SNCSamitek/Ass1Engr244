@@ -6,7 +6,7 @@
 Reservation_Manager::Reservation_Manager(){
     for(int i = 0; i < no_of_rooms; i++){
         for(int j = 0; j < max_no_of_nights; j++){
-            reservation_table [j][i] = 0;
+            reservation_table [i][j] = 0;
         }
     }
 }
@@ -21,50 +21,45 @@ void Reservation_Manager::displayDetails(int id){
     std::cout << "The details of reservation " << id << " are the following:" << std::endl;
     short room = 0; 
 
-    for(size_t i = 0; i < no_of_rooms; i++){ 
-        for(size_t j = 0; j < max_no_of_nights; j++){ 
-            if(id == reservation_table[j][i]){
-                room = i + 1;
-            } 
+    for(int i = 0; i < no_of_rooms; i++){
+        for(int j = 0; j < max_no_of_nights; j++){
+            if(id == reservation_table[i][j]){
+                room = i+1;
+                break;
+            }
         }
-    } 
+    }
 
-    std::cout << "Room number: " << room << std::endl; 
-    std::cout << "Reserved for: " << arr[id]->get_no_of_nights() << " night(s)" << std:: endl;
-    arr[id]->displayPeople();
-    
+    std::cout << "Reserved for: " << arr.at(id-1)->get_no_of_nights() << " night(s)" << std:: endl;
+    arr.at(id-1)->displayPeople();
 }
 
 int Reservation_Manager::processReservation(Guests_Res_Request* req){
-    size_t dur = req->get_no_of_nights();
-    int* stayPtr = new int[dur];
-    bool canBook;
+    short dur = req->get_no_of_nights();
+    short id = req->get_reservation_id();
+    
+    for(int room = 0; room < no_of_rooms; room++){
+        for(int startNight = 0; startNight <= max_no_of_nights - dur; startNight++){
+            bool allNightsAvailable = true;
 
-    for(int i = 0; i < no_of_rooms; i++){
-        for(int j = 0; j < max_no_of_nights - dur; j++){
-            canBook = true;
-
-            for(int k = 0; k < dur; k++){
-                if(reservation_table[i][j+k] != 0){
-                    canBook= false;
-                    break;
+            for(int night = 0; night < dur; night++){
+                if(reservation_table[room][startNight + night] != 0){
+                    allNightsAvailable = false;
+                    break;  
                 }
             }
-
-            if(canBook){
-                for(int k = 0; k < dur; k++){
-                    stayPtr[k] = req->get_reservation_id();
-                    reservation_table[i][j+k] += stayPtr[k];
+            
+            if(allNightsAvailable){
+                for(int night = 0; night < dur; night++){
+                    reservation_table[room][startNight + night] = id;
                 }
-                delete[] stayPtr;
                 arr.push_back(req);
-                return req->get_reservation_id();
+                return id;
             }
         }
     }
     
     delete req;
-    delete[] stayPtr;
     return -1;
 }
 

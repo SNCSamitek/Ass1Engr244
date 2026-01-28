@@ -38,8 +38,7 @@ void Date::setYear(int y) {
 }
 
 void Date::printDate(){
-	std::cout << "year" << std::endl;
-	std::cout << "month" << std::endl;
-	std::cout << "day" << std::endl;
-
+	std::cout << "Year: "<<year << std::endl;
+	std::cout << "Month: " <<month << std::endl;
+	std::cout << "Day: " << day << std::endl;
 }

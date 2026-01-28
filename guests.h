@@ -20,4 +20,7 @@ public:
 	~Guests();
 	std::string toString();
 	void printGuests();
+	inline int getRoomId(){
+		return room_id;
+	}
 };

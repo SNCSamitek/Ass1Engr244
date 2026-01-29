@@ -74,8 +74,6 @@ bool userInput(Reservation_Manager &rm){
 			dateOfBirth.setYear(temp);
 			edgars_people[i] = Information(firstName, lastName, dateOfBirth);
 		}
-		cout << "What room: ";
-		cin >> room_id;
 		cout << "Check in date: \n\tday:";
 		cin >> temp;
 		checkIn.setDay(temp);

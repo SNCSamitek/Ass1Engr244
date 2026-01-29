@@ -4,8 +4,8 @@
 #include <cstring>
 
 Information::Information() {
-	this->firstName[0] = '\0';
-	this->lastName[0] = '\0';
+    firstName[0] = '\0';
+    lastName[0] = '\0';
 	this->dateOfBirth = Date();
 }
 
@@ -64,11 +64,12 @@ void Information::setLastName(const char* lastName) {
 }
 
 void Information::printInformation(){
-    for(auto letter : firstName){
-        std::cout << letter << std::endl;
-    }
-    for(auto letter : lastName){
-        std::cout << letter << std::endl;
-    }
+    std::cout << "First name: " << firstName;
+    std::cout << std::endl;
+
+    std::cout << "Last name: " << lastName;
+    std::cout << std::endl << std::endl;
+
+    std::cout << "Date Of Birth: " << std::endl;
     dateOfBirth.printDate();
 }

@@ -20,6 +20,10 @@ public:
 	~Guests();
 	std::string toString();
 	void printGuests();
+
+	inline Information* getInformation(){
+		return people;
+	}
 	inline int getRoomId(){
 		return room_id;
 	}

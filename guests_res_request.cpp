@@ -21,6 +21,4 @@ void Guests_Res_Request::printGuestsRequests() const{
 		people->printGuests();
 }
 
-void Guests_Res_Request::displayPeople() const{
-	people->printGuests();
-}
+

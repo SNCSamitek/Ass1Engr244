@@ -30,8 +30,14 @@ void Reservation_Manager::displayDetails(int id){
         }
     }
 
-    std::cout << "Reserved for: " << arr.at(id-1)->get_no_of_nights() << " night(s)" << std:: endl;
-    arr.at(id-1)->displayPeople();
+    std::cout << "Reserved for: " << arr.at(id-1)->get_no_of_nights() << " night(s)";
+    std::cout << " in room " << room << std::endl; 
+    
+    std::cout << " Names under the reservation are: " << std::endl << std::endl;
+
+
+    arr[id-1]->getPeople()->getInformation()->printInformation();
+
 }
 
 int Reservation_Manager::processReservation(Guests_Res_Request* req){

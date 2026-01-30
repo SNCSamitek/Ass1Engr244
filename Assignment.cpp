@@ -39,6 +39,8 @@ bool userInput(Reservation_Manager &rm){
 
 	int id;
 	int temp;
+	short userCheckIn;
+	short userCheckOut;
 	int no_of_people;
 	int no_of_nights;
 	Date checkIn;
@@ -53,16 +55,27 @@ bool userInput(Reservation_Manager &rm){
 
 	switch (choice) {
 		case '1':
-		cout << "\nHow many nights are they staying: ";
-		cin >> no_of_nights;
-		cout << "How many people: ";
-		cin >> no_of_people;
+		do{
+			cout << "\nHow many nights are they staying: ";
+			cin >> no_of_nights;
+			if(no_of_nights > 6) cout << "Max of 6 nights available!" << endl;
+			else if(no_of_nights < 1) cout << "Must stay for at least 1 night!" << endl;
+		}while(no_of_nights > 6 || no_of_nights < 1);
+
+		do{
+			cout << "\nHow many people: ";
+			cin >> no_of_people;
+			if(no_of_people > 4) cout << "There is a max of 4 people per room!" << endl;
+			else if(no_of_people < 1) cout << "Must have at least one person in the room!" << endl;
+		}while(no_of_people > 4 || no_of_people < 1);
+
 		for (int i = 0; i < no_of_people && i < 4; i++) {
 			cout << "Person " << i+1 << ":\n";
 			cout << "First name? ";
 			cin >> firstName;
 			cout << "Last name? ";
 			cin >> lastName;
+
 			cout << "Date Of Birth: \n\tday:";
 			cin >> temp;
 			dateOfBirth.setDay(temp);
@@ -72,37 +85,68 @@ bool userInput(Reservation_Manager &rm){
 			cout << "\tyear:";
 			cin >> temp;
 			dateOfBirth.setYear(temp);
+
 			list_people[i] = Information(firstName, lastName, dateOfBirth);
 		}
-		
-		cout << "Check in date: \n\tday:";
-		cin >> temp;
-		checkIn.setDay(temp);
+
+		do{
+			cout << "Which room?" << endl;
+			cin >> room_id;
+			if(room_id < 1 || room_id > 20) cout << "Rooms go from 1 to 20!" << endl << endl;
+		}while(room_id < 1 || room_id > 20);
+
+		do{
+			cout << "Check in date: \n\tday:";
+			cin >> userCheckIn;
+			userCheckOut = no_of_nights + userCheckIn;
+			if(userCheckIn < 1 || userCheckIn > 6) cout << "Check in dates go from 1 to 6!" << endl;
+			else if(userCheckOut > 7) cout << "Check in day and duration of stay bypass hotel's last available day!" << endl;
+		}while(userCheckIn < 1 || userCheckIn > 6 || userCheckOut > 7);
+
+		checkIn.setDay(userCheckIn);
 		checkIn.setMonth(3);
 		checkIn.setYear(2026);
-		cout << "Check Out date: \n\tday:";
-		cin >> temp;
-		checkOut.setDay(temp);
+
+		cout << "Check out will be on day " << userCheckOut << endl;
+		checkOut.setDay(userCheckOut);
 		checkOut.setMonth(3);
 		checkOut.setYear(2026);
+
 		people = new Guests(checkIn, checkOut, list_people, no_of_people, room_id);
 		new_req = new Guests_Res_Request(no_of_nights, people);
 		id = rm.processReservation(new_req);
+		
 		cout << "Reservation created at id: " << id << endl;
 		return false;
 		break;
 
 		case '2':
-		cout << "ID of reservation: ";
-		cin >> id;
-		rm.cancelReservation(id);
+
+		do{
+			cout << "ID of reservation (0 to exit): ";
+			cin >> id;
+			if(rm.getNoGuestsRequest() == 0) cout << "There are currently no assigned hotel IDs (0 to exit)" << endl;
+			else if(id < 1 || id > rm.getNoGuestsRequest()) cout << "IDs must range from 1 to " << rm.getNoGuestsRequest() << endl;
+		}while(id < 0 || id > rm.getNoGuestsRequest());
+
+		if(id <= rm.getNoGuestsRequest() && id > 0){
+			rm.cancelReservation(id);
+		}else if(id == 0) cout << "Exiting cancelling.";
 		return false;
 		break;
 
 		case '3':
-		cout << "ID of reservation: ";
-		cin >> id;
-		rm.displayDetails(id);
+
+		do{
+			cout << "ID of reservation (0 to exit): ";
+			cin >> id;
+			if(rm.getNoGuestsRequest() == 0) cout << "There are currently no assigned hotel IDs (0 to exit)" << endl;
+			else if(id < 1 || id > rm.getNoGuestsRequest()) cout << "IDs must range from 1 to " << rm.getNoGuestsRequest() << endl;
+		}while(id < 0 || id > rm.getNoGuestsRequest());
+
+		if(id <= rm.getNoGuestsRequest() && id > 0){
+			rm.displayDetails(id);
+		}else if(id == 0) cout << "Exiting display.";
 		return false;
 		break;
 

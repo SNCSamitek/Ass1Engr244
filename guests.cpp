@@ -29,6 +29,7 @@ Guests::Guests(Date checkIn, Date checkOut, Information* people, short no_of_peo
 		}
 	}
 	this->checkIn = checkIn;
+	this->room_id = room_id;
 }
 
 Guests::~Guests() {

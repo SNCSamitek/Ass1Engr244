@@ -20,6 +20,7 @@ public:
 	//getters
 	inline int getMaxNoOfNights() const {return max_no_of_nights;};
 	inline int getNoOfRooms() const {return no_of_rooms;};
+	inline int getNoGuestsRequest() const {return arr.size();};
 
 	//core functions
 	void displayDetails(int id);

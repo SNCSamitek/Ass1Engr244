@@ -2,7 +2,7 @@
 #include <iostream>
 
 //constructors and destructor ----------------------------------------------------------------------------
-int Guests_Res_Request::id = 0;
+int Guests_Res_Request::id = 1;
 Guests_Res_Request::Guests_Res_Request(){
 	id++;
 	reservation_id = 0;

@@ -17,8 +17,15 @@ public:
 	Reservation_Manager();
 	~Reservation_Manager();
 
+	//getters
+	inline int getMaxNoOfNights() const {return max_no_of_nights;};
+	inline int getNoOfRooms() const {return no_of_rooms;};
+
+	//core functions
 	void displayDetails(int id);
 	void cancelReservation(int id);
 	int processReservation(Guests_Res_Request* request);
+
+	//other
 	void printResMan();
 };

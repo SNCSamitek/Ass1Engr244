@@ -3,6 +3,8 @@
 #include <sstream>
 #include <cstring>
 
+
+//constructors and destructors ------------------------------------------------------------
 Information::Information() {
     firstName[0] = '\0';
     lastName[0] = '\0';
@@ -24,13 +26,9 @@ Information::Information(char* firstName, char* lastName, Date dateOfBirth) {
 Information::~Information() {
 	
 }
+// --------------------------------------------------------------------------------------
 
-std::string Information::toString() {
-	std::ostringstream value;
-    value << "Guest: " << firstName << " " << lastName << ", born on " << dateOfBirth.toString() << "\n";
-	return value.str();
-}
-
+//setters -----------------------------------------------------------------------------------
 void Information::setFirstName(const char* firstName) {
     if (!firstName) {        
         this->firstName[0] = '\0';
@@ -62,7 +60,9 @@ void Information::setLastName(const char* lastName) {
 	
     this->lastName[i] = '\0';
 }
+//-------------------------------------------------------------------------------------
 
+//other ----------------------------------------------------------------------------
 void Information::printInformation(){
     std::cout << "First name: " << firstName;
     std::cout << std::endl;
@@ -73,3 +73,10 @@ void Information::printInformation(){
     std::cout << "Date Of Birth: " << std::endl;
     dateOfBirth.printDate();
 }
+
+std::string Information::toString() {
+	std::ostringstream value;
+    value << "Guest: " << firstName << " " << lastName << ", born on " << dateOfBirth.toString() << "\n";
+	return value.str();
+}
+//----------------------------------------------------------------------------

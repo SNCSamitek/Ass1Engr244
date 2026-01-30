@@ -1,6 +1,7 @@
 #include "date.h"
 #include <iostream>
 
+//constructors and destructors ----------------------------------------------------------------------------
 Date::Date() {
 	year = 0;
 	month = 1;
@@ -18,13 +19,9 @@ Date::Date(Date const &d) {
 	this->month = d.month;
 	this->year = d.year;
 }
+//-----------------------------------------------------------------------------------------------
 
-std::string Date::toString() {
-	std::ostringstream value;
-	value << year << ", " << month << ", " << day;
-	return value.str();
-}
-
+//setters ----------------------------------------------------------------------------
 void Date::setDay(int d) {
 	day = (d >= 1 && d <= 31) ? d : 1;
 }
@@ -36,9 +33,16 @@ void Date::setMonth(int m) {
 void Date::setYear(int y) {
 	year = (y > 0) ? y : 0;
 }
+//----------------------------------------------------------------------------------------------
 
-void Date::printDate(){
+//others ---------------------------------------------------------------------------------------
+void Date::printDate() const{
 	std::cout << "Year: "<<year << std::endl;
 	std::cout << "Month: " <<month << std::endl;
 	std::cout << "Day: " << day << std::endl;
+}
+std::string Date::toString() {
+	std::ostringstream value;
+	value << year << ", " << month << ", " << day;
+	return value.str();
 }

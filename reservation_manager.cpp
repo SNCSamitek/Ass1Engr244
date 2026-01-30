@@ -3,10 +3,12 @@
 #include <iostream>
 #include <array>
 
+
+//constructors and destructor ---------------------------------------------------
 Reservation_Manager::Reservation_Manager(){
-    for(int i = 0; i < no_of_rooms; i++){
-        for(int j = 0; j < max_no_of_nights; j++){
-            reservation_table [i][j] = 0;
+    for(int room = 0; room < no_of_rooms; room++){
+        for(int night = 0; night < max_no_of_nights; night++){
+            reservation_table [room][night] = 0;
         }
     }
 }
@@ -16,7 +18,9 @@ Reservation_Manager::~Reservation_Manager(){
         delete ptr;
     }
 }
+//----------------------------------------------------------------------------------
 
+//core functions ----------------------------------------------------------------------------------
 void Reservation_Manager::displayDetails(int id){ 
     std::cout << "The details of reservation " << id << " are the following:" << std::endl;
     short room = 0; 
@@ -24,20 +28,41 @@ void Reservation_Manager::displayDetails(int id){
     for(int i = 0; i < no_of_rooms; i++){
         for(int j = 0; j < max_no_of_nights; j++){
             if(id == reservation_table[i][j]){
-                room = i+1;
+                room = i++;
                 break;
             }
         }
     }
 
+
+    std::cout << "Reservation table" << std::endl;
+    for(int i = 0; i < max_no_of_nights; i++){
+        for(int j = 0; j < no_of_rooms; j++){
+            std::cout << reservation_table[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+    
     std::cout << "Reserved for: " << arr.at(id-1)->get_no_of_nights() << " night(s)";
     std::cout << " in room " << room << std::endl; 
     
+    std::cout << "Check In Date: ";
+    arr[id-1]->getPeople()->getCheckIn().printDate();
+    std::cout << std::endl;
+
+    std::cout << "Check Out Date: ";
+    arr[id-1]->getPeople()->getCheckOut().printDate();
+    std::cout << std::endl;
+
     std::cout << " Names under the reservation are: " << std::endl << std::endl;
-
-
-    arr[id-1]->getPeople()->getInformation()->printInformation();
-
+    for(int i = 0; i < arr[id-1]->getPeople()->getNo_of_people(); i++){
+        const Information* pplPtr = arr[id-1]->getPeople()->getInformation();
+        std::cout << "First name: ";
+        std::cout << (pplPtr+i)->getFirstName() << std::endl;
+        std::cout << "Last name: ";
+        std::cout << (pplPtr+i)->getLastName() << std::endl;
+        std::cout << std::endl;
+    }
 }
 
 int Reservation_Manager::processReservation(Guests_Res_Request* req){
@@ -86,6 +111,8 @@ void Reservation_Manager::cancelReservation(int id){
     }
 }
 
+
+//others ----------------------------------------------------------------------------------
 void Reservation_Manager::printResMan(){
     std::cout << max_no_of_nights << std::endl;
     std::cout << no_of_rooms << std::endl;
@@ -103,3 +130,4 @@ void Reservation_Manager::printResMan(){
         std::cout << std::endl;
     }
 }
+//----------------------------------------------------------------------------------

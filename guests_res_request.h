@@ -12,18 +12,20 @@ private:
 	Guests* people;
 
 public: 
-	Guests_Res_Request(int no_of_nights, Guests* people);
+	//constructors & destructors
+	Guests_Res_Request();
+	Guests_Res_Request(int numnights, Guests* ppl);
 	~Guests_Res_Request();
 
-	inline Guests* getPeople(){
-		return people;
-	}
-	
-	inline int get_no_of_nights() const{
-		return no_of_nights;
-	}
-	inline int get_reservation_id() const{
-		return reservation_id;
-	}
+	//getters 
+	inline const Guests* getPeople()const{return people;}
+	inline int get_no_of_nights() const{return no_of_nights;}
+	inline int get_reservation_id() const{return reservation_id;}
+
+	//setters
+	void set_no_of_nights(int numnights);
+	void set_reservation_id(int resId);
+
+	//other
 	void printGuestsRequests() const;
 };

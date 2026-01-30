@@ -43,7 +43,7 @@ bool userInput(Reservation_Manager &rm){
 	int no_of_nights;
 	Date checkIn;
 	Date checkOut;
-	Information edgars_people[4];
+	Information list_people[4];
 	short room_id;
 	char firstName[25];
 	char lastName[25];
@@ -72,8 +72,9 @@ bool userInput(Reservation_Manager &rm){
 			cout << "\tyear:";
 			cin >> temp;
 			dateOfBirth.setYear(temp);
-			edgars_people[i] = Information(firstName, lastName, dateOfBirth);
+			list_people[i] = Information(firstName, lastName, dateOfBirth);
 		}
+		
 		cout << "Check in date: \n\tday:";
 		cin >> temp;
 		checkIn.setDay(temp);
@@ -84,7 +85,7 @@ bool userInput(Reservation_Manager &rm){
 		checkOut.setDay(temp);
 		checkOut.setMonth(3);
 		checkOut.setYear(2026);
-		people = new Guests(checkIn, checkOut, edgars_people, no_of_people, room_id);
+		people = new Guests(checkIn, checkOut, list_people, no_of_people, room_id);
 		new_req = new Guests_Res_Request(no_of_nights, people);
 		id = rm.processReservation(new_req);
 		cout << "Reservation created at id: " << id << endl;

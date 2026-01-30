@@ -12,13 +12,22 @@ private:
 	Date dateOfBirth;
 
 public:
+	//constructors & desctructor
 	Information();
 	Information(Information const &obj);
 	Information(char* firstName, char* lastName, Date dateOfBirth);
 	~Information();
 
-	std::string toString();
+	//getters
+	inline const char* getFirstName() const {return firstName;}
+	inline const char* getLastName() const {return lastName;}
+	inline Date getDateOfBirth()const {return dateOfBirth;}
+
+	//setters
 	void setFirstName(const char* firstName);
 	void setLastName(const char* lastName);
+
+	//others
+	std::string toString();
 	void printInformation();
 };

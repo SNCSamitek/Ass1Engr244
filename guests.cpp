@@ -1,6 +1,7 @@
 #include "guests.h"
 #include <sstream>
 
+//constructors and deconstructor ----------------------------------------------------------------------------
 Guests::Guests() {
 	checkIn = Date();
 	checkOut = Date();
@@ -33,7 +34,24 @@ Guests::Guests(Date checkIn, Date checkOut, Information* people, short no_of_peo
 Guests::~Guests() {
 	
 }
+//----------------------------------------------------------------
 
+//setters ----------------------------------------------------------------------------
+void Guests::setCheckIn(Date& d){
+	checkIn = d;
+}
+void Guests::setCheckOut(Date& d){
+	checkOut = d;
+}
+void Guests::setNo_of_people(int np){
+	no_of_people = np;
+}
+void Guests::setRoomId(int ri){
+	room_id = ri;
+}
+//-----------------------------------------------------------------
+
+//other functions
 std::string Guests::toString() {
 	std::ostringstream value;
     value << "\nCheck in date: " << checkIn.toString() << " --- Check out date" << checkOut.toString() << " --- Room ID " << room_id << '\n';

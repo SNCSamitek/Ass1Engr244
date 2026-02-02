@@ -104,7 +104,7 @@ void Reservation_Manager::printResMan(){
     std::cout << max_no_of_nights << std::endl;
     std::cout << no_of_rooms << std::endl;
 
-    for(auto request : arr){
+    for(Guests_Res_Request* request : arr){
         std::cout << "-------------------" << std::endl;
         request->printGuestsRequests();
     }

@@ -77,7 +77,7 @@ void Guests::printGuests(){
 
 	std::cout << "Room ID: " << std::endl;
 	std::cout << room_id << std::endl;
-	for(auto person : people){
+	for(Information person : people) {
 		person.printInformation();
 	}
 }

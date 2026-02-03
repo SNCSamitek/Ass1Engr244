@@ -128,7 +128,7 @@ bool userInput(Reservation_Manager &rm){
 		id = rm.processReservation(new_req);
 
 		if (id != -1) {
-			cout << "Reservation created at id: " << rm.getNoGuestsRequest() << endl;
+			cout << "Reservation created at id: " << id << endl;
 		} else {
 			cout << "Reservation not created!" << endl;
 		}
@@ -144,8 +144,11 @@ bool userInput(Reservation_Manager &rm){
 			cout << "ID of reservation (0 to exit): ";
 			cin >> id;
 			if(rm.getNoGuestsRequest() == 0) cout << "There are currently no assigned hotel IDs (0 to exit)" << endl;
-			else if(id < 1 || id > rm.getNoGuestsRequest()) cout << "IDs must range from 1 to " << rm.getNoGuestsRequest() << endl;
-		}while(id < 0 || id > rm.getNoGuestsRequest());
+			else if(id < 1) cout << "IDs must be positive " << endl;
+			else{
+				
+			}
+		}while(id < 1);
 
 		if(id <= rm.getNoGuestsRequest() && id > 0){
 			rm.cancelReservation(id);

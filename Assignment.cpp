@@ -61,9 +61,9 @@ bool userInput(Reservation_Manager &rm){
 			cin.ignore(1000, '\n');
 			cout << "\nHow many nights are they staying: ";
 			cin >> no_of_nights;
-			if(no_of_nights > 6) cout << "Max of 6 nights available!" << endl;
+			if(no_of_nights > 7) cout << "Max of 7 nights available!" << endl;
 			else if(no_of_nights < 1) cout << "Must stay for at least 1 night!" << endl;
-		}while(no_of_nights > 6 || no_of_nights < 1);
+		}while(no_of_nights > 7 || no_of_nights < 1);
 
 		do{
 			cin.clear();

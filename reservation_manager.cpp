@@ -2,7 +2,7 @@
 #include "guests_res_request.h"
 #include <iostream>
 #include <array>
-
+#include <iomanip>
 
 //constructors and destructor ---------------------------------------------------
 Reservation_Manager::Reservation_Manager(){
@@ -21,7 +21,8 @@ Reservation_Manager::~Reservation_Manager(){
 //----------------------------------------------------------------------------------
 
 //core functions ----------------------------------------------------------------------------------
-void Reservation_Manager::displayDetails(int id){ 
+void Reservation_Manager::displayDetails(int id){
+	std::cout << "-------------------------------------------------------------" << std::endl; 
     std::cout << "The details of reservation " << id << " are the following:" << std::endl;
     short room = 0; 
 
@@ -36,23 +37,23 @@ void Reservation_Manager::displayDetails(int id){
     std::cout << "Reserved for: " << arr.at(id-1)->get_no_of_nights() << " night(s)";
     std::cout << " in room " << arr.at(id-1)->getPeople()->getRoomId() << std::endl;
     
-    std::cout << "Check In Date: " << std::endl;
-    arr[id-1]->getPeople()->getCheckIn().printDate();
+	Date checkIn = arr[id-1]->getPeople()->getCheckIn();
+    std::cout << "Check In Date (y, m, d): " << checkIn.toString();
     std::cout << std::endl;
 
-    std::cout << "Check Out Date: " << std::endl;
-    arr[id-1]->getPeople()->getCheckOut().printDate();
+	Date checkOut = arr[id-1]->getPeople()->getCheckOut();
+    std::cout << "Check Out Date (y, m, d): " << checkOut.toString();
     std::cout << std::endl;
 
     std::cout << "Names under the reservation are: " << std::endl << std::endl;
     for(int i = 0; i < arr[id-1]->getPeople()->getNo_of_people(); i++){
         const Information* pplPtr = arr[id-1]->getPeople()->getInformation();
-        std::cout << "First name: ";
-        std::cout << (pplPtr+i)->getFirstName() << std::endl;
-        std::cout << "Last name: ";
+        std::cout << "Person " << i+1 << ": ";
+		std::cout << (pplPtr+i)->getFirstName() << " ";
         std::cout << (pplPtr+i)->getLastName() << std::endl;
-        std::cout << std::endl;
     }
+	std::cout << std::endl;
+	std::cout << "-------------------------------------------------------------" << std::endl; 
 }
 
 int Reservation_Manager::processReservation(Guests_Res_Request* req){

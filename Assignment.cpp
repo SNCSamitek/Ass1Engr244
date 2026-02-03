@@ -26,7 +26,7 @@ void displayMenu(Reservation_Manager &rm){
 		cout << "\t1) Add a reservation." << endl;
 		cout << "\t2) Cancel a reservation." << endl;
 		cout << "\t3) Display information of a reservation." << endl;
-		cout << "\t4) Check if the bathroom is empty." << endl;
+		cout << "\t4) Display information of all reservations." << endl;
 		cout << "\t5) Exit the program." << endl << endl;
 		exit = userInput(rm);
 	}
@@ -56,6 +56,8 @@ bool userInput(Reservation_Manager &rm){
 	switch (choice) {
 		case '1':
 		do{
+			cin.clear();
+			cin.ignore(1000, '\n');
 			cout << "\nHow many nights are they staying: ";
 			cin >> no_of_nights;
 			if(no_of_nights > 6) cout << "Max of 6 nights available!" << endl;
@@ -63,6 +65,8 @@ bool userInput(Reservation_Manager &rm){
 		}while(no_of_nights > 6 || no_of_nights < 1);
 
 		do{
+			cin.clear();
+			cin.ignore(1000, '\n');
 			cout << "\nHow many people: ";
 			cin >> no_of_people;
 			if(no_of_people > 4) cout << "There is a max of 4 people per room!" << endl;
@@ -70,6 +74,8 @@ bool userInput(Reservation_Manager &rm){
 		}while(no_of_people > 4 || no_of_people < 1);
 
 		for (int i = 0; i < no_of_people && i < 4; i++) {
+			cin.clear();
+			cin.ignore(1000, '\n');
 			cout << "Person " << i+1 << ":\n";
 			cout << "First name? ";
 			cin >> firstName;
@@ -90,12 +96,16 @@ bool userInput(Reservation_Manager &rm){
 		}
 
 		do{
+			cin.clear();
+			cin.ignore(1000, '\n');
 			cout << "Which room?" << endl;
 			cin >> room_id;
 			if(room_id < 1 || room_id > 20) cout << "Rooms go from 1 to 20!" << endl << endl;
 		}while(room_id < 1 || room_id > 20);
 
 		do{
+			cin.clear();
+			cin.ignore(1000, '\n');
 			cout << "Check in date: \n\tday:";
 			cin >> userCheckIn;
 			userCheckOut = no_of_nights + userCheckIn;
@@ -116,13 +126,15 @@ bool userInput(Reservation_Manager &rm){
 		new_req = new Guests_Res_Request(no_of_nights, people);
 		id = rm.processReservation(new_req);
 		
-		cout << "Reservation created at id: " << id << endl;
+		cout << "Reservation created at id: " << rm.getNoGuestsRequest() << endl;
 		return false;
 		break;
 
 		case '2':
 
 		do{
+			cin.clear();
+			cin.ignore(1000, '\n');
 			cout << "ID of reservation (0 to exit): ";
 			cin >> id;
 			if(rm.getNoGuestsRequest() == 0) cout << "There are currently no assigned hotel IDs (0 to exit)" << endl;
@@ -138,6 +150,8 @@ bool userInput(Reservation_Manager &rm){
 		case '3':
 
 		do{
+			cin.clear();
+			cin.ignore(1000, '\n');
 			cout << "ID of reservation (0 to exit): ";
 			cin >> id;
 			if(rm.getNoGuestsRequest() == 0) cout << "There are currently no assigned hotel IDs (0 to exit)" << endl;
@@ -151,7 +165,11 @@ bool userInput(Reservation_Manager &rm){
 		break;
 
 		case '4':
-		cout << "The bathroom is VERY empty!" << endl;
+		
+		for(id = 1; id <= rm.getNoGuestsRequest(); id++){
+			rm.displayDetails(id);
+		}
+
 		return false;
 		break;
 

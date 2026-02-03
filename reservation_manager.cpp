@@ -58,8 +58,8 @@ void Reservation_Manager::displayDetails(int id){
 
 int Reservation_Manager::processReservation(Guests_Res_Request* req){
     short id = req->get_reservation_id();
-    short room = req->getPeople()->getRoomId();
-    short startNight = req->getPeople()->getCheckIn().getDay();
+    short room = req->getPeople()->getRoomId()-1;
+    short startNight = req->getPeople()->getCheckIn().getDay()-1;
     short dur = req->get_no_of_nights();
 
     bool isAvailable = true;
@@ -105,15 +105,16 @@ void Reservation_Manager::printResMan(){
     std::cout << max_no_of_nights << std::endl;
     std::cout << no_of_rooms << std::endl;
 
-    for(Guests_Res_Request* request : arr){
-        std::cout << "-------------------" << std::endl;
-        request->printGuestsRequests();
-    }
-
     std::cout << "Reservation table" << std::endl;
+	std::cout << "        ";
+	for (int j = 0; j < 20; j++) {
+		std::cout << std::left << std::setw(3) << j+1 << " ";
+	}
+	std::cout << std::endl;
     for(int i = 0; i < max_no_of_nights; i++){
-        for(int j = 0; j < no_of_rooms; j++){
-            std::cout << reservation_table[j][i] << " ";
+        std::cout << "Mar " << i+1 << " | ";
+		for(int j = 0; j < no_of_rooms; j++){
+            std::cout << std::setw(3) << std::left << reservation_table[j][i] << " ";
         }
         std::cout << std::endl;
     }

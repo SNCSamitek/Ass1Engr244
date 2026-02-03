@@ -27,7 +27,8 @@ void displayMenu(Reservation_Manager &rm){
 		cout << "\t2) Cancel a reservation." << endl;
 		cout << "\t3) Display information of a reservation." << endl;
 		cout << "\t4) Display information of all reservations." << endl;
-		cout << "\t5) Exit the program." << endl << endl;
+		cout << "\t5) Display Reservation Table." << endl;
+		cout << "\t6) Exit the program." << endl << endl;
 		exit = userInput(rm);
 	}
 
@@ -174,6 +175,11 @@ bool userInput(Reservation_Manager &rm){
 		break;
 
 		case '5':
+		rm.printResMan();
+		return false;
+		break;
+
+		case '6':
 		cout << "Exiting..." << endl;
 		return true;
 		break;

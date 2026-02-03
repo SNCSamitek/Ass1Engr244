@@ -22,18 +22,22 @@ Reservation_Manager::~Reservation_Manager(){
 
 //core functions ----------------------------------------------------------------------------------
 void Reservation_Manager::displayDetails(int id){
+
+	bool check = false;
+	for (Guests_Res_Request* req : arr) {
+		if (req->get_reservation_id() == id) {
+			check = true;
+		}
+	}
+	if (!check) {
+		std::cout << "Reservation of id " << id << " does not exist." << std::endl;
+		return;
+	}
+
 	std::cout << "-------------------------------------------------------------" << std::endl; 
     std::cout << "The details of reservation " << id << " are the following:" << std::endl;
-    short room = 0; 
 
-    for(int i = 0; i < no_of_rooms; i++){
-        for(int j = 0; j < max_no_of_nights; j++){
-            if(id == reservation_table[i][j]){
-                room = i++;
-                break;
-            }
-        }
-    }    
+
     std::cout << "Reserved for: " << arr.at(id-1)->get_no_of_nights() << " night(s)";
     std::cout << " in room " << arr.at(id-1)->getPeople()->getRoomId() << std::endl;
     

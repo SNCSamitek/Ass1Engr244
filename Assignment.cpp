@@ -150,7 +150,7 @@ bool userInput(Reservation_Manager &rm){
 			}
 		}while(id < 1);
 
-		if(id <= rm.getNoGuestsRequest() && id > 0){
+		if(id > 0){
 			rm.cancelReservation(id);
 		}else if(id == 0) cout << "Exiting cancelling.";
 		return false;
@@ -164,12 +164,12 @@ bool userInput(Reservation_Manager &rm){
 			cout << "ID of reservation (0 to exit): ";
 			cin >> id;
 			if(rm.getNoGuestsRequest() == 0) cout << "There are currently no assigned hotel IDs (0 to exit)" << endl;
-			else if(id < 1 || id > rm.getNoGuestsRequest()) cout << "IDs must range from 1 to " << rm.getNoGuestsRequest() << endl;
-		}while(id < 0 || id > rm.getNoGuestsRequest());
+			else if(id < 1) cout << "IDs must be positive." << endl;
+		} while(id < 0);
 
-		if(id <= rm.getNoGuestsRequest() && id > 0){
+		if(id > 0){
 			rm.displayDetails(id);
-		}else if(id == 0) cout << "Exiting display.";
+		} else if(id == 0) cout << "Exiting display.";
 		return false;
 		break;
 

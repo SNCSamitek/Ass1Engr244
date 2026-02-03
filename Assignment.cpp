@@ -111,8 +111,8 @@ bool userInput(Reservation_Manager &rm){
 			cin >> userCheckIn;
 			userCheckOut = no_of_nights + userCheckIn;
 			if(userCheckIn < 1 || userCheckIn > 6) cout << "Check in dates go from 1 to 6!" << endl;
-			else if(userCheckOut > 7) cout << "Check in day and duration of stay bypass hotel's last available day!" << endl;
-		}while(userCheckIn < 1 || userCheckIn > 6 || userCheckOut > 7);
+			else if(userCheckOut > 8) cout << "Check in day and duration of stay bypass hotel's last available day!" << endl;
+		}while(userCheckIn < 1 || userCheckIn > 6 || userCheckOut > 8);
 
 		checkIn.setDay(userCheckIn);
 		checkIn.setMonth(3);
@@ -126,8 +126,13 @@ bool userInput(Reservation_Manager &rm){
 		people = new Guests(checkIn, checkOut, list_people, no_of_people, room_id);
 		new_req = new Guests_Res_Request(no_of_nights, people);
 		id = rm.processReservation(new_req);
+
+		if (id != -1) {
+			cout << "Reservation created at id: " << rm.getNoGuestsRequest() << endl;
+		} else {
+			cout << "Reservation not created!" << endl;
+		}
 		
-		cout << "Reservation created at id: " << rm.getNoGuestsRequest() << endl;
 		return false;
 		break;
 
@@ -166,7 +171,9 @@ bool userInput(Reservation_Manager &rm){
 		break;
 
 		case '4':
-		
+		if(rm.getNoGuestsRequest() == 0){
+			cout << "There are currently no reservations";
+		}
 		for(id = 1; id <= rm.getNoGuestsRequest(); id++){
 			rm.displayDetails(id);
 		}

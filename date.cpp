@@ -36,11 +36,14 @@ void Date::setYear(int y) {
 //----------------------------------------------------------------------------------------------
 
 //others ---------------------------------------------------------------------------------------
+// Prints out the Year, Month, and Day
 void Date::printDate() const{
 	std::cout << "Year: "<<year << std::endl;
 	std::cout << "Month: " <<month << std::endl;
 	std::cout << "Day: " << day << std::endl;
 }
+
+// Returns a string with "yyyy, mm, dd"
 std::string Date::toString() {
 	std::ostringstream value;
 	value << year << ", " << month << ", " << day;

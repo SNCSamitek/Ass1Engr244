@@ -32,6 +32,7 @@ void  Guests_Res_Request::set_reservation_id(int resId) {
 	}
 //-------------------------------------------------------------------------------------------
 
+// Prints number of nights, reservation id, and all guests information
 void Guests_Res_Request::printGuestsRequests() const{
 		std::cout << this->no_of_nights << std::endl;
 		std::cout << this->reservation_id << std::endl;

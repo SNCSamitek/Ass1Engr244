@@ -18,7 +18,7 @@ int main()
 }
 
 
-
+// Shows the user their choices for input
 void displayMenu(Reservation_Manager &rm){
 	bool exit = false;
 	while (!exit) {
@@ -34,10 +34,13 @@ void displayMenu(Reservation_Manager &rm){
 
 }
 
+// The input loop which will ask the user to provide input to their choice
+// then does the actions required for that choice
 bool userInput(Reservation_Manager &rm){
 	char choice;
 	cin >> choice;
 
+	// Must have initialization before the switch
 	int id;
 	int temp;
 	short userCheckIn;
@@ -56,6 +59,7 @@ bool userInput(Reservation_Manager &rm){
 
 	switch (choice) {
 		case '1':
+		// Input for number of nights
 		do{
 			cin.clear();
 			cin.ignore(1000, '\n');
@@ -65,6 +69,7 @@ bool userInput(Reservation_Manager &rm){
 			else if(no_of_nights < 1) cout << "Must stay for at least 1 night!" << endl;
 		}while(no_of_nights > 7 || no_of_nights < 1);
 
+		// Input for number of people
 		do{
 			cin.clear();
 			cin.ignore(1000, '\n');
@@ -74,6 +79,7 @@ bool userInput(Reservation_Manager &rm){
 			else if(no_of_people < 1) cout << "Must have at least one person in the room!" << endl;
 		}while(no_of_people > 4 || no_of_people < 1);
 
+		// Input for names of people and their birth dates
 		for (int i = 0; i < no_of_people && i < 4; i++) {
 			cin.clear();
 			cin.ignore(1000, '\n');
@@ -96,6 +102,7 @@ bool userInput(Reservation_Manager &rm){
 			list_people[i] = Information(firstName, lastName, dateOfBirth);
 		}
 
+		// Input for which room
 		do{
 			cin.clear();
 			cin.ignore(1000, '\n');
@@ -104,6 +111,7 @@ bool userInput(Reservation_Manager &rm){
 			if(room_id < 1 || room_id > 20) cout << "Rooms go from 1 to 20!" << endl << endl;
 		}while(room_id < 1 || room_id > 20);
 
+		// Input for check in day
 		do{
 			cin.clear();
 			cin.ignore(1000, '\n');
@@ -123,6 +131,7 @@ bool userInput(Reservation_Manager &rm){
 		checkOut.setMonth(3);
 		checkOut.setYear(2026);
 
+		// The processing of the request
 		people = new Guests(checkIn, checkOut, list_people, no_of_people, room_id);
 		new_req = new Guests_Res_Request(no_of_nights, people);
 		id = rm.processReservation(new_req);
@@ -138,6 +147,7 @@ bool userInput(Reservation_Manager &rm){
 
 		case '2':
 
+		// Cancelling Reservation Process
 		do{
 			cin.clear();
 			cin.ignore(1000, '\n');
@@ -158,6 +168,7 @@ bool userInput(Reservation_Manager &rm){
 
 		case '3':
 
+		// Display Details of a singular reservation based on user choice
 		do{
 			cin.clear();
 			cin.ignore(1000, '\n');
@@ -174,6 +185,7 @@ bool userInput(Reservation_Manager &rm){
 		break;
 
 		case '4':
+		// Display Details of All Reservations
 		if(rm.getNoGuestsRequest() == 0){
 			cout << "There are currently no reservations";
 		}
@@ -185,16 +197,19 @@ bool userInput(Reservation_Manager &rm){
 		break;
 
 		case '5':
+		// Show the reservation table
 		rm.printResMan();
 		return false;
 		break;
 
 		case '6':
+		// Exit the Program
 		cout << "Exiting..." << endl;
 		return true;
 		break;
 
 		default:
+		// Safety in Case user inputs invalid choice
 		cout << "Invalid input" << endl;
 		return false;
 		break;

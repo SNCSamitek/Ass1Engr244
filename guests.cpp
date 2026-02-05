@@ -53,6 +53,7 @@ void Guests::setRoomId(int ri){
 //-----------------------------------------------------------------
 
 //other functions
+// Returns string of information of Guests
 std::string Guests::toString() {
 	std::ostringstream value;
     value << "\nCheck in date: " << checkIn.toString() << " --- Check out date" << checkOut.toString() << " --- Room ID " << room_id << '\n';
@@ -63,6 +64,7 @@ std::string Guests::toString() {
 	return value.str();
 }
 
+// Prints information of Guests
 void Guests::printGuests(){
 	std::cout << "Room ID: " << std::endl;
 	std::cout << room_id << std::endl;

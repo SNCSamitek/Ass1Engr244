@@ -63,6 +63,7 @@ void Information::setLastName(const char* lastName) {
 //-------------------------------------------------------------------------------------
 
 //other ----------------------------------------------------------------------------
+// Prints the First Name, Last Name, and Date of Birth of the Person
 void Information::printInformation(){
     std::cout << "First name: " << firstName;
     std::cout << std::endl;
@@ -74,6 +75,7 @@ void Information::printInformation(){
     dateOfBirth.printDate();
 }
 
+// Returns a string of "Guest: {firstName} {lastName}, born on {dateOfBirth}\n"
 std::string Information::toString() {
 	std::ostringstream value;
     value << "Guest: " << firstName << " " << lastName << ", born on " << dateOfBirth.toString() << "\n";

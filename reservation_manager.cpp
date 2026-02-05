@@ -21,6 +21,7 @@ Reservation_Manager::~Reservation_Manager(){
 //----------------------------------------------------------------------------------
 
 //core functions ----------------------------------------------------------------------------------
+// This function takes in a reservation id and displays the associated information if it exists
 void Reservation_Manager::displayDetails(int id){
 
 	bool check = false;
@@ -60,6 +61,8 @@ void Reservation_Manager::displayDetails(int id){
 	std::cout << "-------------------------------------------------------------" << std::endl; 
 }
 
+// This function takes in a request and will atempt to check if the request is valid and if it can be fullfilled
+// then if it is valid it will reserve it in the table otherwise it will return -1
 int Reservation_Manager::processReservation(Guests_Res_Request* req){
     short id = req->get_reservation_id();
     short room = req->getPeople()->getRoomId()-1;
@@ -86,6 +89,7 @@ int Reservation_Manager::processReservation(Guests_Res_Request* req){
     return -1;
 }
 
+// If the reservation id provided exists it will remove it
 void Reservation_Manager::cancelReservation(int id){
     for(int i = 0; i < arr.size(); i++){
         if(arr[i]->get_reservation_id() == id){
@@ -105,6 +109,9 @@ void Reservation_Manager::cancelReservation(int id){
 
 
 //others ----------------------------------------------------------------------------------
+// This prints out the reservation table of all reservations
+// this will be done in the format of the days on the left and rooms at the top
+// this is the visualization of the 2d array
 void Reservation_Manager::printResMan(){
     std::cout << max_no_of_nights << std::endl;
     std::cout << no_of_rooms << std::endl;
@@ -114,7 +121,7 @@ void Reservation_Manager::printResMan(){
 	for (int j = 0; j < 20; j++) {
 		std::cout << std::left << std::setw(3) << j+1 << " ";
 	}
-	std::cout << std::endl;
+	std::cout << std::endl << "---------------------------------------------------------------------------------------" << std::endl;
     for(int i = 0; i < max_no_of_nights; i++){
         std::cout << "Mar " << i+1 << " | ";
 		for(int j = 0; j < no_of_rooms; j++){
